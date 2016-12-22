@@ -2,7 +2,7 @@ require 'formula'
 
 class Rtlsdr < Formula
   homepage 'http://sdr.osmocom.org/trac/wiki/rtl-sdr'
-  head 'git://git.osmocom.org/rtl-sdr.git'
+  head 'https://github.com/osmocom/rtl-sdr.git'
 
   depends_on 'pkg-config' => :build
   depends_on 'automake' => :build
@@ -15,9 +15,9 @@ class Rtlsdr < Formula
   end
 
   def install
-    args = ["--prefix=#{prefix}"]
-    system "autoreconf -i"
-    system "./configure", *args
-    system "make install"
+    mkdir 'build' do
+      system 'cmake', '..', *std_cmake_args
+      system 'make'
+      system 'make install'
   end
 end

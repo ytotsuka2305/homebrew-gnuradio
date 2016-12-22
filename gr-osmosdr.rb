@@ -2,11 +2,11 @@ require 'formula'
 
 class GrOsmosdr < Formula
   homepage 'http://sdr.osmocom.org/trac/wiki/GrOsmoSDR'
-  head 'git://git.osmocom.org/gr-osmosdr', :branch => 'gr3.6'
+  head 'https://github.com/osmocom/gr-osmosdr.git'
 
   depends_on 'cmake' => :build
   depends_on 'gnuradio'
-  depends_on 'rtlsdr'
+  depends_on 'rtlsdr' => [:optional, 'with-rtlsdr']
 
   def install
     mkdir 'build' do
